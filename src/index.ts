@@ -1,15 +1,14 @@
-import express, { Express, Request, Response } from 'express';
-import dotenv from 'dotenv';
+// import 'tsconfig-paths/register';
+import 'dotenv/config';
 
-dotenv.config();
+import { App } from './app';
 
-const app: Express = express();
-const port = process.env.PORT || 3001;
+console.clear();
 
-app.get('/', (req: Request, res: Response) => {
-  return res.send('Express Nodejs!');
-});
-
-app.listen(port, () => {
-  console.log(`[server]: Server is running at http://localhost:${port}`);
-});
+(async () => {
+  try {
+    new App().setup();
+  } catch (err) {
+    console.error('[server] Something went wrong', err);
+  }
+})();
